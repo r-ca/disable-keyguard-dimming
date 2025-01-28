@@ -21,7 +21,7 @@ public class Entry implements IXposedHookLoadPackage {
 
         try {
             Class<?> scrimControllerClass = XposedHelpers.findClass("com.android.systemui.statusbar.phone.ScrimController", lpparam.classLoader);
-            XposedBridge.log("DisableWallpaperDimmingModule: Found ScrimController class.");
+//            XposedBridge.log("DisableWallpaperDimmingModule: Found ScrimController class.");
 
             XposedHelpers.findAndHookMethod(
                     scrimControllerClass,
@@ -31,7 +31,7 @@ public class Entry implements IXposedHookLoadPackage {
                         protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                             try {
                                 XposedHelpers.setFloatField(param.thisObject, "mScrimBehindAlphaKeyguard", KeyGuardDimAmount);
-                                XposedBridge.log("DisableWallpaperDimmingModule: Set mScrimBehindAlphaKeyguard to " + KeyGuardDimAmount);
+//                                XposedBridge.log("DisableWallpaperDimmingModule: Set mScrimBehindAlphaKeyguard to " + KeyGuardDimAmount);
 
                                 Class<?> scrimStateClass = XposedHelpers.findClass("com.android.systemui.statusbar.phone.ScrimState", lpparam.classLoader);
                                 Object[] enumConstants = scrimStateClass.getEnumConstants();
@@ -39,13 +39,13 @@ public class Entry implements IXposedHookLoadPackage {
                                 for (Object constant : enumConstants) {
                                     try {
                                         XposedHelpers.setFloatField(constant, "mScrimBehindAlphaKeyguard", KeyGuardDimAmount);
-                                        XposedBridge.log("DisableWallpaperDimmingModule: Set mScrimBehindAlphaKeyguard for " + constant.toString() + " to " + KeyGuardDimAmount);
+//                                        XposedBridge.log("DisableWallpaperDimmingModule: Set mScrimBehindAlphaKeyguard for " + constant.toString() + " to " + KeyGuardDimAmount);
                                     } catch (Throwable t) {
-                                        XposedBridge.log("DisableWallpaperDimmingModule: Error setting mScrimBehindAlphaKeyguard for " + constant.toString() + ": " + t);
+//                                        XposedBridge.log("DisableWallpaperDimmingModule: Error setting mScrimBehindAlphaKeyguard for " + constant.toString() + ": " + t);
                                     }
                                 }
                             } catch (Throwable t) {
-                                XposedBridge.log("DisableWallpaperDimmingModule: Error in scheduleUpdate hook: " + t);
+//                                XposedBridge.log("DisableWallpaperDimmingModule: Error in scheduleUpdate hook: " + t);
                             }
                         }
                     }
