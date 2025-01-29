@@ -6,7 +6,7 @@
   - 結果的にAOSP Mods(PixelXpert)に近い(というか同じ?)場所を書き換えているっぽいので、そちらが動く環境なら概ね問題ないと思います
 
 ## 動作確認
-- Motorola Edge40
+- Motorola Edge40 (@r-ca)
   - Android 14
   - Security patch version: 2024/12/1
   - Build number: U1TLS34.115-16-1-7-1
